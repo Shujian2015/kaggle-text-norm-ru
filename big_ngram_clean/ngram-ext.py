@@ -10,9 +10,9 @@ import pickle
 
 #  Settings
 lan = 'ru'
-ngram = 3       # Ngram for training set
-ngram_ext = 3   # External ngram
-debug_mode = True # Debug mode just uses one external file
+ngram = 5          # Ngram for training set
+ngram_ext = 2      # External ngram
+debug_mode = False # Debug mode just uses one external file
 file_to_cover = 'baseline_ext_en_2.csv' # Baseline file
 file_output = 'sub_train' + str(ngram) + '_ext' + str(ngram_ext) + 'gram_new'
 
@@ -90,7 +90,7 @@ def ngram_dict(train, files, n, DATA_INPUT_PATH):
                         value = [after[j + k] for k in range(n)]
 
                         if tuple(key) in d:
-                            if tuple(value) in d[n][tuple(key)]:
+                            if tuple(value) in d[tuple(key)]:
                                 d[tuple(key)][tuple(value)] += 1
                             else:
                                 d[tuple(key)][tuple(value)] = 1
@@ -106,6 +106,7 @@ def ngram_dict(train, files, n, DATA_INPUT_PATH):
     
     #### Training data ####
     #  Save n-gram dict from training set
+    print("   Training set")
     grouped = train.groupby('sentence_id')
 
     # For each sentence
@@ -135,16 +136,15 @@ def ngram_dict(train, files, n, DATA_INPUT_PATH):
 
         
     #### Save dict to pickle ####
-    with open('d_ru_' + 'n' + 'gram.pickle', 'wb') as f:
-        # Pickle the 'data' dictionary using the highest protocol available.
-        pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)        
+    # with open('d_ru_' + 'n' + 'gram.pickle', 'wb') as f:
+    #    pickle.dump(d, f, pickle.HIGHEST_PROTOCOL)        
         
     return d
 
 
 
 def cover_output(d, n, test):
-    
+    print("   Covering old output")
     before = test['before'].values.tolist()
     token_id = test['token_id'].values.tolist()
     after = test['after'].values.tolist()
@@ -180,7 +180,7 @@ if __name__ == '__main__':
 
         # Save to output
         test[['id','after']].to_csv(file_output + str(i) + '.csv', index=False)
-
+        print("   File saved") 
     print('done')
 
 
