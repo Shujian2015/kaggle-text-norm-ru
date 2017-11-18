@@ -1,6 +1,8 @@
 ########################################################
 '''
-READ MY COMMENT BELOW
+Modified from https://www.kaggle.com/arccosmos/ru-baseline-lb-0-9799-from-en-thread
+With tflare and Pavel Pleskov's comments
+~ 0.9750
 '''
 ########################################################
 

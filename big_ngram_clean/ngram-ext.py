@@ -1,4 +1,9 @@
 # coding: utf-8
+'''
+Modified from:
+https://www.kaggle.com/tunguz/ru-baseline-lb-0-9632
+https://www.kaggle.com/arccosmos/ru-baseline-lb-0-9799-from-en-thread
+'''
 
 import pandas as pd
 import numpy as np
