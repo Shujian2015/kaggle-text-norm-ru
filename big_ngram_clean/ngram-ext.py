@@ -16,7 +16,7 @@ import pickle
 #  Settings
 lan = 'ru'
 ngram = 5          # Ngram for training set
-ngram_ext = 2      # External ngram
+ngram_ext = 3      # External ngram
 debug_mode = False # Debug mode just uses one external file
 file_to_cover = 'baseline_ext_en_2.csv' # Baseline file
 file_output = 'sub_train' + str(ngram) + '_ext' + str(ngram_ext) + 'gram_new'
@@ -73,8 +73,8 @@ def ngram_dict(train, files, n, DATA_INPUT_PATH):
 
                 pos = line.find('\t')
                 text = line[pos + 1:]
-                if text[:3] == '':
-                    continue
+                #if text[:3] == '':
+                #     continue
                 arr = text.split('\t')
 
                 # Add line to tmp if not <eos> 
@@ -160,7 +160,7 @@ def cover_output(d, n, test):
         key = tuple(key)
 
         # Need to check token_id is 0 (tokens should be in on sentence)
-        if key in d and (not 0 in token_id[j: j+i]):  
+        if key in d:  # and (not (0 in token_id[j+1: j+n])) and (not ('0' in token_id[j+1: j+n])):  
             for k in range(n):
                 after[j + k] = d[key][k]
                 
