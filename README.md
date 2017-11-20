@@ -6,8 +6,8 @@
 * https://github.com/rwsproat/text-normalization-data
 
 ### Running code
-* ./big_ngram_clean/script.py
-* ./big_ngram_clean/best_v2.py
+* ./ru-final/script_v2.py
+* ./ru-final/best_v2.py
 
 ### Deployment
 
